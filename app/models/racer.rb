@@ -36,4 +36,16 @@ class Racer
     doc = collection.find(_id: BSON::ObjectId.from_string(id)).first
     doc.nil? ? nil : Racer.new(doc)
   end
+
+  def save
+    doc = self.class.collection.insert_one(
+                                           number: @number,
+                                           first_name: @first_name,
+                                           last_name: @last_name,
+                                           gender: @gender,
+                                           group: @group,
+                                           secs: @secs
+      )
+    @id = doc.inserted_id.to_s
+  end
 end
