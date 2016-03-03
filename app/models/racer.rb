@@ -31,4 +31,9 @@ class Racer
                      .skip(offset)
     limit.nil? ? docs : docs.limit(limit)
   end
+
+  def self.find(id)
+    doc = collection.find(_id: BSON::ObjectId.from_string(id)).first
+    doc.nil? ? nil : Racer.new(doc)
+  end
 end
