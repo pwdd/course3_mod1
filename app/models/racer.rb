@@ -1,4 +1,5 @@
 class Racer
+  include ActiveModel::Model
   attr_accessor :id, :number, :first_name, :last_name, :gender, :group, :secs
 
   def initialize(params={})
@@ -66,5 +67,9 @@ class Racer
 
     self.class.collection.find(_id: BSON::ObjectId.from_string(@id))
                          .update_one(params_without_id)
+  end
+
+  def destroy
+    self.class.collection.find(number: @number).delete_one
   end
 end
