@@ -1,4 +1,6 @@
 class Racer
+  attr_accessor :id, :number, :first_name, :last_name, :gender, :group, :secs
+  
   def self.mongo_client
     Mongoid::Clients.default
   end
