@@ -1,6 +1,16 @@
 class Racer
   attr_accessor :id, :number, :first_name, :last_name, :gender, :group, :secs
-  
+
+  def initialize(params={})
+    @id = params[:_id].nil? ? params[:id] : params[:_id].to_s
+    @number = params[:number].to_i ||= nil
+    @first_name = params[:first_name] ||= nil
+    @last_name = params[:last_name] ||= nil
+    @gender = params[:gender] ||= nil
+    @group = params[:group] ||= nil
+    @secs = params[:secs].to_i ||= nil
+  end
+
   def self.mongo_client
     Mongoid::Clients.default
   end
