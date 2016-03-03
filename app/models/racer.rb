@@ -72,4 +72,10 @@ class Racer
   def destroy
     self.class.collection.find(number: @number).delete_one
   end
+
+  def persisted?
+    !@id.nil?
+  end
+
+  
 end
